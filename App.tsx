@@ -5,9 +5,10 @@ import Header from './src/components/molecules/Header';
 import TextInput from './src/components/molecules/TextInput';
 import DshbrdPemasukan from './src/components/molecules/Pemasukan/DshbrdPemasukan';
 import AddPemasukan from './src/components/molecules/Pemasukan/AddPemasukan';
+import Detail from './src/components/molecules/Pemasukan/Detail';
 
 const App = () => {
-  return <SplashScreen />;
+  return <Detail />;
 };
 
 export default App;
