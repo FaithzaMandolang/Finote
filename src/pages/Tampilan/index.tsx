@@ -21,15 +21,15 @@ export default function WelcomePage({navigation}) {
 
       <Button
         label="Login"
-        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        onPress={() => navigation.navigate('SignUpPage')}
         height={55}
       />
       <Gap height={20} />
       <Button
         label="Register"
-        onPress={() => navigation.navigate('Register')}
+        onPress={() => navigation.navigate('DshbrdPemasukan')}
         height={55}
-        backgroundColor="#2196F3" // <-- Warna biru muda untuk Register
+        backgroundColor="#2196F3"
       />
     </View>
   );

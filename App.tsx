@@ -5,6 +5,7 @@ import DshbrdPemasukan from './src/pages/Pemasukan/DshbrdPemasukan';
 import AddPemasukan from './src/pages/Pemasukan/AddPemasukan';
 import Detail from './src/pages/Pemasukan/Detail';
 import WelcomePage from './src/pages/Tampilan/index';
+import SignUpPage from './src/pages/SignUp/index';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -15,6 +16,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="SignUpPage"
+          component={SignUpPage}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="WelcomePage"
           component={WelcomePage}
