@@ -5,7 +5,10 @@ import LastTransaksi from '../LastTransaksi';
 import Button from '../../../atoms/Button';
 import Card from '../../../atoms/Card';
 
-const DshbrdPemasukan = () => {
+const DshbrdPemasukan = ({navigation}) => {
+  const onSubmit = () => {
+    navigation.navigate('AddPemasukan');
+  };
   return (
     <View>
       <Header title={'Catatan Pemasukan'} />
@@ -17,7 +20,7 @@ const DshbrdPemasukan = () => {
 
       <LastTransaksi />
 
-      <Button />
+      <Button onPress={onSubmit} />
     </View>
   );
 };

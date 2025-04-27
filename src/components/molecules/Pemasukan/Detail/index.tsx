@@ -5,7 +5,7 @@ import Gap from '../../../atoms/Gap';
 import Card from '../../../atoms/Card';
 import Row from './Row';
 
-const Detail = () => {
+const Detail = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header title="Detail Pemasukan" />
@@ -31,7 +31,9 @@ const Detail = () => {
       </Card>
 
       <Gap height={54} />
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        activeOpacity={0.5}>
         <Text style={styles.back}>Kembali ke Dashboard</Text>
       </TouchableOpacity>
     </View>

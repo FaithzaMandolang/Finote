@@ -6,7 +6,6 @@ import {
   Text,
   TextInput as RNTextInput,
   ScrollView,
-  KeyboardAvoidingView,
   Platform,
   Keyboard,
 } from 'react-native';
@@ -25,7 +24,7 @@ const formatDate = date => {
   return `${day}/${month}/${year}`;
 };
 
-const AddPemasukan = () => {
+const AddPemasukan = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [manualDate, setManualDate] = useState('');
@@ -74,7 +73,11 @@ const AddPemasukan = () => {
 
   return (
     <View style={styles.container}>
-      <Header title={'Tambah Pemasukan'} />
+      <Header
+        title={'Tambah Pemasukan'}
+        withBackIcon
+        onPress={() => navigation.goBack()}
+      />
       <Gap height={80} />
       <TextInput label="Jumlah" placeholder="Rp" />
       <Gap height={8} />
@@ -157,7 +160,7 @@ const AddPemasukan = () => {
         />
       </View>
 
-      <Button />
+      <Button onPress={() => navigation.navigate('Detail')} />
       <Gap height={24} />
     </View>
   );

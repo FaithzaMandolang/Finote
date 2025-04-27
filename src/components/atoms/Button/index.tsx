@@ -1,9 +1,12 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const Button = () => {
+const Button = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={0.5}
+      onPress={onPress}>
       <Text style={styles.buttonText}>Tambah Pemasukan</Text>
     </TouchableOpacity>
   );
