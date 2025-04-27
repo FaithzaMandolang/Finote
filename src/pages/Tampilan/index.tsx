@@ -1,6 +1,7 @@
-import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, Image, StyleSheet} from 'react-native';
 import {Finote} from '../../assets';
 import Gap from '../../components/atoms/Gap';
+import Button from '../../components/atoms/Button';
 import React from 'react';
 
 export default function WelcomePage({navigation}) {
@@ -17,17 +18,19 @@ export default function WelcomePage({navigation}) {
         uang dengan lebih bijak dan capai target keuangan Anda.
       </Text>
       <Gap height={80} />
-      <TouchableOpacity
-        style={[styles.button, styles.loginButton]}
-        onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <Gap height={47} />
-      <TouchableOpacity
-        style={[styles.button, styles.registerButton]}
-        onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
+
+      <Button
+        label="Login"
+        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        height={55}
+      />
+      <Gap height={20} />
+      <Button
+        label="Register"
+        onPress={() => navigation.navigate('Register')}
+        height={55}
+        backgroundColor="#2196F3" // <-- Warna biru muda untuk Register
+      />
     </View>
   );
 }
@@ -46,7 +49,6 @@ const styles = StyleSheet.create({
     marginTop: -120,
   },
   title: {
-    height: 36,
     fontSize: 30,
     fontWeight: 'bold',
     color: '#00AEEF',
@@ -57,21 +59,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'black',
     textAlign: 'center',
-  },
-  button: {
-    width: '80%',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  loginButton: {
-    backgroundColor: '#061C3D',
-  },
-  registerButton: {
-    backgroundColor: '#2196F3',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
