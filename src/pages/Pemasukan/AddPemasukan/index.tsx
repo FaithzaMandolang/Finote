@@ -9,10 +9,10 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
-import Header from '../../Header';
-import TextInput from '../../TextInput';
-import Gap from '../../../atoms/Gap';
-import Button from '../../../atoms/Button';
+import Header from '../../../components/molecules/Header';
+import TextInput from '../../../components/molecules/TextInput';
+import Gap from '../../../components/atoms/Gap';
+import Button from '../../../components/atoms/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -30,6 +30,10 @@ const AddPemasukan = ({navigation}) => {
   const [manualDate, setManualDate] = useState('');
   const [periode, setPeriode] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const [jumlah, setJumlah] = useState('');
+  const [sumber, setSumber] = useState('');
+  const [keterangan, setKeterangan] = useState('');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -71,6 +75,16 @@ const AddPemasukan = ({navigation}) => {
 
   const periodeList = ['Harian', 'Bulanan', 'Tahunan'];
 
+  const onSimpan = () => {
+    navigation.navigate('Detail', {
+      jumlah: jumlah,
+      tanggal: manualDate,
+      periode: periode,
+      sumber: sumber,
+      keterangan: keterangan,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Header
@@ -79,9 +93,23 @@ const AddPemasukan = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <Gap height={80} />
-      <TextInput label="Jumlah" placeholder="Rp" />
+      <TextInput
+        label="Jumlah"
+        placeholder="Rp"
+        value={jumlah}
+        onChangeText={text => {
+          const cleaned = text.replace(/[^0-9]/g, '');
+          setJumlah(cleaned);
+        }}
+        keyboardType="numeric"
+      />
       <Gap height={8} />
-      <TextInput label="Sumber" placeholder="Gaji, Bonus, dll" />
+      <TextInput
+        label="Sumber"
+        placeholder="Gaji, Bonus, dll"
+        value={sumber}
+        onChangeText={text => setSumber(text)}
+      />
       <Gap height={8} />
 
       {/* Tanggal */}
@@ -149,18 +177,18 @@ const AddPemasukan = ({navigation}) => {
       {/* Keterangan */}
       <Gap height={8} />
       <Text style={styles.label}>Keterangan</Text>
-
       <Gap height={8} />
-      <View style={styles.textarea}>
+      <View>
         <RNTextInput
+          style={styles.textArea}
           placeholder="Pesan"
           multiline
-          textAlignVertical="top"
-          style={styles.textArea}
+          value={keterangan}
+          onChangeText={text => setKeterangan(text)}
         />
       </View>
 
-      <Button onPress={() => navigation.navigate('Detail')} />
+      <Button label="Simpan" onPress={onSimpan} />
       <Gap height={24} />
     </View>
   );
@@ -224,14 +252,13 @@ const styles = StyleSheet.create({
   activeText: {
     fontWeight: 'bold',
   },
-  textarea: {
+  textArea: {
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
     borderRadius: 8,
     marginHorizontal: 24,
-  },
-  textArea: {
-    minHeight: 50,
+    minHeight: 100,
+    textAlignVertical: 'top',
   },
 });

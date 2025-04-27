@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import SplashScreen from './src/pages/SplashScreen';
-import DshbrdPemasukan from './src/components/molecules/Pemasukan/DshbrdPemasukan';
-import AddPemasukan from './src/components/molecules/Pemasukan/AddPemasukan';
-import Detail from './src/components/molecules/Pemasukan/Detail';
+import DshbrdPemasukan from './src/pages/Pemasukan/DshbrdPemasukan';
+import AddPemasukan from './src/pages/Pemasukan/AddPemasukan';
+import Detail from './src/pages/Pemasukan/Detail';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -14,6 +14,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="DshbrdPemasukan"
           component={DshbrdPemasukan}

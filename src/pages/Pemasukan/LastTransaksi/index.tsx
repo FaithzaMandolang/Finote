@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
-import Gap from '../../../atoms/Gap';
+import Gap from '../../../components/atoms/Gap';
 
 const LastTransaksi = () => {
   return (

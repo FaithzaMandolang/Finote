@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Header from '../../Header';
+import Header from '../../../components/molecules/Header';
 import LastTransaksi from '../LastTransaksi';
-import Button from '../../../atoms/Button';
-import Card from '../../../atoms/Card';
+import Button from '../../../components/atoms/Button';
+import Card from '../../../components/atoms/Card';
 
-const DshbrdPemasukan = ({navigation}) => {
+const DshbrdPemasukan = ({navigation, route}) => {
+  const {jumlah, periode} = route.params || {};
   const onSubmit = () => {
     navigation.navigate('AddPemasukan');
   };
@@ -14,13 +15,17 @@ const DshbrdPemasukan = ({navigation}) => {
       <Header title={'Catatan Pemasukan'} />
 
       <Card style={styles.card}>
-        <Text style={styles.Title}>Pemasukan Bulan Ini</Text>
-        <Text style={styles.mount}>Rp 5.000.000</Text>
+        <Text style={styles.Title}>
+          Pemasukan {periode ? periode : 'Periode'}
+        </Text>
+        <Text style={styles.mount}>
+          {jumlah ? `Rp ${Number(jumlah).toLocaleString('id-ID')}` : 'Rp 0'}
+        </Text>
       </Card>
 
       <LastTransaksi />
 
-      <Button onPress={onSubmit} />
+      <Button label="Tambah Pemasukan" onPress={onSubmit} />
     </View>
   );
 };
@@ -39,15 +44,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     color: '#00000',
     marginTop: 32,
-    marginLeft: 65,
-    marginRight: 52,
+    textAlign: 'center',
   },
   mount: {
     fontSize: 32,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-Bold',
     color: '#FFFFFF',
     marginTop: 24,
-    marginHorizontal: 77,
     marginBottom: 54,
+    textAlign: 'center',
   },
 });

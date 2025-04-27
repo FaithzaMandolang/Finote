@@ -1,38 +1,43 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
-import Header from '../../Header';
-import Gap from '../../../atoms/Gap';
-import Card from '../../../atoms/Card';
+import Header from '../../../components/molecules/Header';
+import Gap from '../../../components/atoms/Gap';
+import Card from '../../../components/atoms/Card';
 import Row from './Row';
 
-const Detail = ({navigation}) => {
+const Detail = ({navigation, route}) => {
+  const {jumlah, tanggal, periode, sumber, keterangan} = route.params;
   return (
     <View style={styles.container}>
       <Header title="Detail Pemasukan" />
       <Gap height={60} />
 
       <Card style={styles.card}>
-        <Text style={styles.mount}>Rp 5.000.000</Text>
+        <Text style={styles.mount}>Rp {jumlah}</Text>
         <Text style={styles.total}>Total Pemasukan</Text>
         <View style={styles.line} />
 
         <Gap height={44} />
 
-        <Row label="Tanggal" value="4 April 2025" />
+        <Row label="Tanggal" value={tanggal} />
         <Gap height={27} />
-        <Row label="Periode" value="Bulanan" />
+        <Row label="Periode" value={periode} />
         <Gap height={27} />
-        <Row label="Sumber" value="Gaji" />
+        <Row label="Sumber" value={sumber} />
         <Gap height={27} />
-        <Row
-          label="Keterangan"
-          value="Gaji bulan April, Sudah termasuk bonus bulan ini"
-        />
+        <Row label="Keterangan" value={keterangan} />
       </Card>
 
       <Gap height={54} />
       <TouchableOpacity
-        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        onPress={() =>
+          navigation.navigate('DshbrdPemasukan', {
+            jumlah: jumlah,
+            periode: periode,
+            sumber: sumber,
+            tanggal: tanggal,
+          })
+        }
         activeOpacity={0.5}>
         <Text style={styles.back}>Kembali ke Dashboard</Text>
       </TouchableOpacity>
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     width: 380,
     height: 538,
     marginHorizontal: 16,
+    textAlign: 'center',
   },
   mount: {
     fontSize: 36,
@@ -57,6 +63,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginTop: 24,
     marginHorizontal: 61,
+    textAlign: 'center',
   },
   total: {
     fontSize: 20,
@@ -64,6 +71,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginLeft: 96,
     color: '#1C1B1F',
+    alignItems: 'center',
   },
   line: {
     height: 1,
