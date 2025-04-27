@@ -1,8 +1,11 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Finote} from '../../assets';
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => navigation.replace('DshbrdPemasukan'), 3000);
+  }, []);
   return (
     <View style={styles.container}>
       <Image source={Finote} />

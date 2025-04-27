@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   label: {
     width: 110,
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: 17,
     marginRight: 10,
   },
