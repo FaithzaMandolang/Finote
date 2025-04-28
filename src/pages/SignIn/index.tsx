@@ -28,7 +28,7 @@ export default function LoginPage({navigation}) {
 
       <Button
         label="Login"
-        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        onPress={() => navigation.navigate('ProfilePage')}
         height={55}
       />
     </View>
