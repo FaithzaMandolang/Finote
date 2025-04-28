@@ -93,105 +93,104 @@ const AddPemasukan = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <Gap height={80} />
-      <View style={{marginHorizontal: 24}}>
-        <TextInput
-          label="Jumlah"
-          placeholder="Rp"
-          value={jumlah}
-          onChangeText={text => {
-            const cleaned = text.replace(/[^0-9]/g, '');
-            setJumlah(cleaned);
-          }}
+
+      <TextInput
+        label="Jumlah"
+        placeholder="Rp"
+        value={jumlah}
+        onChangeText={text => {
+          const cleaned = text.replace(/[^0-9]/g, '');
+          setJumlah(cleaned);
+        }}
+        keyboardType="numeric"
+      />
+      <Gap height={8} />
+      <TextInput
+        label="Sumber"
+        placeholder="Gaji, Bonus, dll"
+        value={sumber}
+        onChangeText={text => setSumber(text)}
+      />
+      <Gap height={8} />
+
+      {/* Tanggal */}
+      <Text style={styles.label}>Tanggal</Text>
+      <View style={styles.dateInput}>
+        <RNTextInput
+          style={styles.dateText}
+          value={manualDate}
+          onChangeText={handleManualInput}
+          placeholder="DD/MM/YYYY"
           keyboardType="numeric"
+          maxLength={10}
         />
-        <Gap height={8} />
-        <TextInput
-          label="Sumber"
-          placeholder="Gaji, Bonus, dll"
-          value={sumber}
-          onChangeText={text => setSumber(text)}
-        />
-        <Gap height={8} />
-
-        {/* Tanggal */}
-        <Text style={styles.label}>Tanggal</Text>
-        <View style={styles.dateInput}>
-          <RNTextInput
-            style={styles.dateText}
-            value={manualDate}
-            onChangeText={handleManualInput}
-            placeholder="DD/MM/YYYY"
-            keyboardType="numeric"
-            maxLength={10}
-          />
-          <TouchableOpacity onPress={showCalender}>
-            <Icon name="calendar" size={21} color="#000" />
-          </TouchableOpacity>
-        </View>
-
-        {show && (
-          <DateTimePicker
-            value={date}
-            mode="date"
-            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-            onChange={onChange}
-          />
-        )}
-
-        {/* Periode */}
-        <Gap height={8} />
-        <Text style={styles.label}>Periode</Text>
-        <TouchableOpacity
-          style={styles.dropdown}
-          onPress={() => setShowDropdown(!showDropdown)}>
-          <Text style={{color: periode ? '#00000' : '#aaa'}}>
-            {periode || 'Pilih Periode'}
-          </Text>
-          <Icon name="chevron-down" size={14} />
+        <TouchableOpacity onPress={showCalender}>
+          <Icon name="calendar" size={21} color="#000" />
         </TouchableOpacity>
-
-        {showDropdown && (
-          <View style={styles.dropdownList}>
-            {periodeList.map(item => (
-              <TouchableOpacity
-                key={item}
-                style={[
-                  styles.dropdownItem,
-                  periode === item && styles.activeItem,
-                ]}
-                onPress={() => {
-                  setPeriode(item);
-                  setShowDropdown(false);
-                }}>
-                <Text
-                  style={[
-                    styles.dropdownText,
-                    periode === item && styles.activeText,
-                  ]}>
-                  {item}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-
-        {/* Keterangan */}
-        <Gap height={8} />
-        <Text style={styles.label}>Keterangan</Text>
-        <Gap height={8} />
-        <View>
-          <RNTextInput
-            style={styles.textArea}
-            placeholder="Pesan"
-            multiline
-            value={keterangan}
-            onChangeText={text => setKeterangan(text)}
-          />
-        </View>
-
-        <Button label="Simpan" onPress={onSimpan} />
-        <Gap height={24} />
       </View>
+
+      {show && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={onChange}
+        />
+      )}
+
+      {/* Periode */}
+      <Gap height={8} />
+      <Text style={styles.label}>Periode</Text>
+      <TouchableOpacity
+        style={styles.dropdown}
+        onPress={() => setShowDropdown(!showDropdown)}>
+        <Text style={{color: periode ? '#00000' : '#aaa'}}>
+          {periode || 'Pilih Periode'}
+        </Text>
+        <Icon name="chevron-down" size={14} />
+      </TouchableOpacity>
+
+      {showDropdown && (
+        <View style={styles.dropdownList}>
+          {periodeList.map(item => (
+            <TouchableOpacity
+              key={item}
+              style={[
+                styles.dropdownItem,
+                periode === item && styles.activeItem,
+              ]}
+              onPress={() => {
+                setPeriode(item);
+                setShowDropdown(false);
+              }}>
+              <Text
+                style={[
+                  styles.dropdownText,
+                  periode === item && styles.activeText,
+                ]}>
+                {item}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
+
+      {/* Keterangan */}
+      <Gap height={8} />
+      <Text style={styles.label}>Keterangan</Text>
+      <Gap height={8} />
+      <View>
+        <RNTextInput
+          style={styles.textArea}
+          placeholder="Pesan"
+          multiline
+          value={keterangan}
+          onChangeText={text => setKeterangan(text)}
+        />
+      </View>
+
+      <Button label="Simpan" onPress={onSimpan} />
+      <Gap height={24} />
     </View>
   );
 };

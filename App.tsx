@@ -8,6 +8,7 @@ import WelcomePage from './src/pages/Tampilan/index';
 import SignUpPage from './src/pages/SignUp/index';
 import LoginPage from './src/pages/SignIn/index';
 import ProfilePage from './src/pages/Profile/index';
+import Settings from './src/pages/Settings';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -57,7 +58,7 @@ const App = () => {
           name="Detail"
           component={Detail}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Settings"
           component={Settings}
