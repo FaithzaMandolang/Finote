@@ -93,103 +93,105 @@ const AddPemasukan = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <Gap height={80} />
-      <TextInput
-        label="Jumlah"
-        placeholder="Rp"
-        value={jumlah}
-        onChangeText={text => {
-          const cleaned = text.replace(/[^0-9]/g, '');
-          setJumlah(cleaned);
-        }}
-        keyboardType="numeric"
-      />
-      <Gap height={8} />
-      <TextInput
-        label="Sumber"
-        placeholder="Gaji, Bonus, dll"
-        value={sumber}
-        onChangeText={text => setSumber(text)}
-      />
-      <Gap height={8} />
-
-      {/* Tanggal */}
-      <Text style={styles.label}>Tanggal</Text>
-      <View style={styles.dateInput}>
-        <RNTextInput
-          style={styles.dateText}
-          value={manualDate}
-          onChangeText={handleManualInput}
-          placeholder="DD/MM/YYYY"
+      <View style={{marginHorizontal: 24}}>
+        <TextInput
+          label="Jumlah"
+          placeholder="Rp"
+          value={jumlah}
+          onChangeText={text => {
+            const cleaned = text.replace(/[^0-9]/g, '');
+            setJumlah(cleaned);
+          }}
           keyboardType="numeric"
-          maxLength={10}
         />
-        <TouchableOpacity onPress={showCalender}>
-          <Icon name="calendar" size={21} color="#000" />
-        </TouchableOpacity>
-      </View>
-
-      {show && (
-        <DateTimePicker
-          value={date}
-          mode="date"
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          onChange={onChange}
+        <Gap height={8} />
+        <TextInput
+          label="Sumber"
+          placeholder="Gaji, Bonus, dll"
+          value={sumber}
+          onChangeText={text => setSumber(text)}
         />
-      )}
+        <Gap height={8} />
 
-      {/* Periode */}
-      <Gap height={8} />
-      <Text style={styles.label}>Periode</Text>
-      <TouchableOpacity
-        style={styles.dropdown}
-        onPress={() => setShowDropdown(!showDropdown)}>
-        <Text style={{color: periode ? '#00000' : '#aaa'}}>
-          {periode || 'Pilih Periode'}
-        </Text>
-        <Icon name="chevron-down" size={14} />
-      </TouchableOpacity>
-
-      {showDropdown && (
-        <View style={styles.dropdownList}>
-          {periodeList.map(item => (
-            <TouchableOpacity
-              key={item}
-              style={[
-                styles.dropdownItem,
-                periode === item && styles.activeItem,
-              ]}
-              onPress={() => {
-                setPeriode(item);
-                setShowDropdown(false);
-              }}>
-              <Text
-                style={[
-                  styles.dropdownText,
-                  periode === item && styles.activeText,
-                ]}>
-                {item}
-              </Text>
-            </TouchableOpacity>
-          ))}
+        {/* Tanggal */}
+        <Text style={styles.label}>Tanggal</Text>
+        <View style={styles.dateInput}>
+          <RNTextInput
+            style={styles.dateText}
+            value={manualDate}
+            onChangeText={handleManualInput}
+            placeholder="DD/MM/YYYY"
+            keyboardType="numeric"
+            maxLength={10}
+          />
+          <TouchableOpacity onPress={showCalender}>
+            <Icon name="calendar" size={21} color="#000" />
+          </TouchableOpacity>
         </View>
-      )}
 
-      {/* Keterangan */}
-      <Gap height={8} />
-      <Text style={styles.label}>Keterangan</Text>
-      <Gap height={8} />
-      <View>
-        <RNTextInput
-          style={styles.textArea}
-          placeholder="Pesan"
-          multiline
-          value={keterangan}
-          onChangeText={text => setKeterangan(text)}
-        />
+        {show && (
+          <DateTimePicker
+            value={date}
+            mode="date"
+            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+            onChange={onChange}
+          />
+        )}
+
+        {/* Periode */}
+        <Gap height={8} />
+        <Text style={styles.label}>Periode</Text>
+        <TouchableOpacity
+          style={styles.dropdown}
+          onPress={() => setShowDropdown(!showDropdown)}>
+          <Text style={{color: periode ? '#00000' : '#aaa'}}>
+            {periode || 'Pilih Periode'}
+          </Text>
+          <Icon name="chevron-down" size={14} />
+        </TouchableOpacity>
+
+        {showDropdown && (
+          <View style={styles.dropdownList}>
+            {periodeList.map(item => (
+              <TouchableOpacity
+                key={item}
+                style={[
+                  styles.dropdownItem,
+                  periode === item && styles.activeItem,
+                ]}
+                onPress={() => {
+                  setPeriode(item);
+                  setShowDropdown(false);
+                }}>
+                <Text
+                  style={[
+                    styles.dropdownText,
+                    periode === item && styles.activeText,
+                  ]}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
+
+        {/* Keterangan */}
+        <Gap height={8} />
+        <Text style={styles.label}>Keterangan</Text>
+        <Gap height={8} />
+        <View>
+          <RNTextInput
+            style={styles.textArea}
+            placeholder="Pesan"
+            multiline
+            value={keterangan}
+            onChangeText={text => setKeterangan(text)}
+          />
+        </View>
+
+        <Button label="Simpan" onPress={onSimpan} />
+        <Gap height={24} />
       </View>
-
-      <Button label="Simpan" onPress={onSimpan} />
-      <Gap height={24} />
     </View>
   );
 };
@@ -204,14 +206,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 17,
     color: '#000',
-    marginHorizontal: 24,
   },
   dateInput: {
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
     borderRadius: 8,
-    marginHorizontal: 24,
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
@@ -222,7 +222,6 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   dropdown: {
-    marginHorizontal: 24,
     borderWidth: 1,
     borderRadius: 8,
     padding: 12,
@@ -231,7 +230,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   dropdownList: {
-    marginHorizontal: 24,
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 4,
@@ -240,11 +238,12 @@ const styles = StyleSheet.create({
   },
   dropdownItem: {
     paddingVertical: 12,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
   },
   dropdownText: {
     fontSize: 16,
     color: '#000',
+    marginLeft: 13,
   },
   activeItem: {
     backgroundColor: '#e0e0e0',
@@ -257,7 +256,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderWidth: 1,
     borderRadius: 8,
-    marginHorizontal: 24,
     minHeight: 100,
     textAlignVertical: 'top',
   },

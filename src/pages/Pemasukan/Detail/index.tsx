@@ -32,10 +32,12 @@ const Detail = ({navigation, route}) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('DshbrdPemasukan', {
-            jumlah: jumlah,
-            periode: periode,
-            sumber: sumber,
-            tanggal: tanggal,
+            newTransaction: {
+              jumlah,
+              periode,
+              sumber,
+              tanggal,
+            },
           })
         }
         activeOpacity={0.5}>

@@ -2,27 +2,28 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Gap from '../../../components/atoms/Gap';
 
-const LastTransaksi = () => {
+const LastTransaksi = ({transactions}) => {
   return (
     <View>
       <Text style={styles.transaction}>Transaksi Terakhir</Text>
 
-      <View style={styles.cardsContainer}>
-        <View>
-          <Text style={styles.transactionTitle}>Gaji Bulanan</Text>
-          <Text style={styles.transactionDate}>4 April 2025</Text>
-        </View>
-        <Text style={styles.transactionAmount}>Rp 5.000.000</Text>
-      </View>
-      <Gap height={22} />
-      <View style={styles.cardsContainer}>
-        <View>
-          <Text style={styles.transactionTitle}>Gaji Harian</Text>
-          <Text style={styles.transactionDate}>5 April 2025</Text>
-        </View>
-        <Text style={styles.transactionAmount}>Rp 400.000</Text>
-      </View>
+      {transactions.length > 0 ? (
+        transactions.map((item, index) => (
+          <View style={styles.cardsContainer} key={index}>
+            <View>
+              <Text style={styles.transactionTitle}>{item.sumber}</Text>
+              <Text style={styles.transactionDate}>{item.tanggal}</Text>
+            </View>
+            <Text style={styles.transactionAmount}>
+              Rp {Number(item.jumlah).toLocaleString('id-ID')}
+            </Text>
+          </View>
+        ))
+      ) : (
+        <Text style={styles.noTransaction}>Belum ada transaksi</Text>
+      )}
 
+      <Gap height={22} />
       <TouchableOpacity>
         <Text style={styles.moreText}>Lihat Lainnya</Text>
       </TouchableOpacity>
@@ -73,5 +74,10 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 31,
     marginTop: 8,
+  },
+  noTransaction: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

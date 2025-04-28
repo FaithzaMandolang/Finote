@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../../components/molecules/Header';
 import LastTransaksi from '../LastTransaksi';
 import Button from '../../../components/atoms/Button';
@@ -7,6 +7,20 @@ import Card from '../../../components/atoms/Card';
 
 const DshbrdPemasukan = ({navigation, route}) => {
   const {jumlah, periode} = route.params || {};
+
+  const [transactions, setTransactions] = useState([]);
+
+  const {newTransaction} = route.params || {};
+
+  useEffect(() => {
+    if (newTransaction) {
+      setTransactions(prevTransactions => [
+        newTransaction,
+        ...prevTransactions,
+      ]);
+    }
+  }, [newTransaction]);
+
   const onSubmit = () => {
     navigation.navigate('AddPemasukan');
   };
@@ -16,14 +30,17 @@ const DshbrdPemasukan = ({navigation, route}) => {
 
       <Card style={styles.card}>
         <Text style={styles.Title}>
-          Pemasukan {periode ? periode : 'Periode'}
+          Pemasukan{' '}
+          {transactions.length > 0 ? transactions[0].periode : 'Periode'}
         </Text>
         <Text style={styles.mount}>
-          {jumlah ? `Rp ${Number(jumlah).toLocaleString('id-ID')}` : 'Rp 0'}
+          {transactions.length > 0
+            ? `Rp ${Number(transactions[0].jumlah).toLocaleString('id-ID')}`
+            : 'Rp 0'}
         </Text>
       </Card>
 
-      <LastTransaksi />
+      <LastTransaksi transactions={transactions} />
 
       <Button label="Tambah Pemasukan" onPress={onSubmit} />
     </View>
