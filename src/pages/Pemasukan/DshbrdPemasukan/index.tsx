@@ -11,22 +11,19 @@ const DshbrdPemasukan = ({navigation, route}) => {
 
   const [transactions, setTransactions] = useState([]);
 
-  const {newTransaction} = route.params || {};
+  const {newTransaction, existingTransactions} = route.params || {};
 
   useEffect(() => {
     if (newTransaction) {
-      setTransactions(prevTransactions => [
-        newTransaction,
-        ...prevTransactions,
-      ]);
+      setTransactions([newTransaction, ...(existingTransactions || [])]);
     }
   }, [newTransaction]);
 
   const onSubmit = () => {
-    navigation.navigate('AddPemasukan');
+    navigation.navigate('AddPemasukan', {transactions});
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Header title={'Catatan Pemasukan'} />
 
       <Card style={styles.card}>
@@ -41,7 +38,7 @@ const DshbrdPemasukan = ({navigation, route}) => {
         </Text>
       </Card>
 
-      <LastTransaksi transactions={transactions} />
+      <LastTransaksi transactions={transactions} navigation={navigation} />
       <Gap height={20} />
 
       <Button label="Tambah Pemasukan" onPress={onSubmit} />
@@ -52,6 +49,10 @@ const DshbrdPemasukan = ({navigation, route}) => {
 export default DshbrdPemasukan;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+  },
   card: {
     width: 380,
     height: 191,

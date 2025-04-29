@@ -24,7 +24,7 @@ const formatDate = date => {
   return `${day}/${month}/${year}`;
 };
 
-const AddPemasukan = ({navigation}) => {
+const AddPemasukan = ({navigation, route}) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [manualDate, setManualDate] = useState('');
@@ -34,6 +34,8 @@ const AddPemasukan = ({navigation}) => {
   const [jumlah, setJumlah] = useState('');
   const [sumber, setSumber] = useState('');
   const [keterangan, setKeterangan] = useState('');
+
+  const existingTransactions = route.params?.transactions || [];
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -82,6 +84,7 @@ const AddPemasukan = ({navigation}) => {
       periode: periode,
       sumber: sumber,
       keterangan: keterangan,
+      existingTransactions,
     });
   };
 
@@ -92,7 +95,7 @@ const AddPemasukan = ({navigation}) => {
         withBackIcon
         onPress={() => navigation.goBack()}
       />
-      <Gap height={80} />
+      <Gap height={56} />
       <View>
         <TextInput
           label="Jumlah"
@@ -188,7 +191,7 @@ const AddPemasukan = ({navigation}) => {
             onChangeText={text => setKeterangan(text)}
           />
         </View>
-        <Gap height={165} />
+        <Gap height={154} />
 
         <Button label="Simpan" onPress={onSimpan} />
       </View>
@@ -201,6 +204,7 @@ export default AddPemasukan;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   label: {
     fontFamily: 'Poppins-Regular',

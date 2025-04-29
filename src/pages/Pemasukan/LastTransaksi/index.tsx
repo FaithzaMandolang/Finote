@@ -1,32 +1,44 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Gap from '../../../components/atoms/Gap';
 
-const LastTransaksi = ({transactions}) => {
+const LastTransaksi = ({transactions, navigation}) => {
+  const handlePress = item => {
+    navigation.navigate('Detail', {data: item});
+  };
   return (
     <View>
       <Text style={styles.transaction}>Transaksi Terakhir</Text>
 
-      {transactions.length > 0 ? (
-        transactions.map((item, index) => (
-          <View style={styles.cardsContainer} key={index}>
-            <View>
-              <Text style={styles.transactionTitle}>{item.sumber}</Text>
-              <Text style={styles.transactionDate}>{item.tanggal}</Text>
-            </View>
-            <Text style={styles.transactionAmount}>
-              Rp {Number(item.jumlah).toLocaleString('id-ID')}
-            </Text>
-          </View>
-        ))
-      ) : (
-        <Text style={styles.noTransaction}>Belum ada transaksi</Text>
-      )}
+      <View style={styles.List}>
+        <FlatList
+          data={transactions}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('transaksiDetail', {
+                  ...item,
+                  existingTransactions: transactions,
+                })
+              }>
+              <View style={styles.item}>
+                <View>
+                  <Text style={styles.title}>{item.sumber}</Text>
+                  <Text style={styles.date}>{item.tanggal}</Text>
+                </View>
+                <Text style={styles.amount}>
+                  Rp {item.jumlah.toLocaleString('id:ID')}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+          scrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+        />
 
-      <Gap height={22} />
-      <TouchableOpacity>
-        <Text style={styles.moreText}>Lihat Lainnya</Text>
-      </TouchableOpacity>
+        <Gap height={22} />
+      </View>
     </View>
   );
 };
@@ -34,6 +46,10 @@ const LastTransaksi = ({transactions}) => {
 export default LastTransaksi;
 
 const styles = StyleSheet.create({
+  List: {
+    maxHeight: 200,
+    marginBottom: 10,
+  },
   transaction: {
     color: '#000000',
     fontFamily: 'Poppins-Bold',
@@ -42,42 +58,31 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginHorizontal: 20,
   },
-  cardsContainer: {
+  item: {
+    borderWidth: 1,
+    borderColor: '#061C3D',
+    borderRadius: 12,
+    padding: 7,
+    marginHorizontal: 20,
+    backgroundColor: '#fff',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 2,
-    width: 379,
-    height: 70,
-    borderRadius: 12,
-    marginHorizontal: 20,
-    padding: 8,
+    marginBottom: 22,
   },
-  transactionTitle: {
-    fontFamily: 'Poppins-Medium',
+  title: {
     fontSize: 18,
+    color: '#000',
+    fontFamily: 'Poppins-Medium',
   },
-  transactionDate: {
-    fontFamily: 'Poppins',
+  date: {
     fontSize: 15,
+    fontFamily: 'Poppins-Regular',
+    color: '#000',
   },
-  transactionAmount: {
-    fontFamily: 'Poppins-Medium',
+  amount: {
     fontSize: 18,
+    fontFamily: 'Poppins-Bold',
     color: '#156B03',
-  },
-  moreText: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 14,
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
-    textAlign: 'right',
-    marginRight: 31,
-    marginTop: 8,
-  },
-  noTransaction: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginTop: 20,
   },
 });

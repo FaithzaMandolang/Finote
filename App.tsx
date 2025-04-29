@@ -12,6 +12,7 @@ import Settings from './src/pages/Settings';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import transaksiDetail from './src/pages/Pemasukan/TransaksiDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,11 @@ const App = () => {
         <Stack.Screen
           name="Settings"
           component={Settings}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="transaksiDetail"
+          component={transaksiDetail}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
