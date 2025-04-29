@@ -15,10 +15,10 @@ import {Email, Phone, Profil} from '../../assets';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 export default function ProfilePage({navigation}) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState('Francesco Repu');
-  const [email, setEmail] = useState('FR@gmail.com');
-  const [phone, setPhone] = useState('081232144145');
+  const [isEditing, setIsEditing] = useState(false); // Default: view mode
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [profileImage, setProfileImage] = useState(null);
 
   const handleEditToggle = () => {
@@ -32,26 +32,26 @@ export default function ProfilePage({navigation}) {
   };
 
   const handleChoosePhoto = () => {
-    launchImageLibrary({mediaType: 'photo', quality: 0.5}, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorCode) {
-        console.log('ImagePicker Error: ', response.errorMessage);
-      } else if (response.assets && response.assets.length > 0) {
-        setProfileImage(response.assets[0].uri);
-      }
-    });
+    if (isEditing) {
+      launchImageLibrary({mediaType: 'photo', quality: 0.5}, response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.errorCode) {
+          console.log('ImagePicker Error: ', response.errorMessage);
+        } else if (response.assets && response.assets.length > 0) {
+          setProfileImage(response.assets[0].uri);
+        }
+      });
+    }
   };
 
   return (
     <View style={styles.container}>
       <Header title="Profil" withBackIcon onPress={() => navigation.goBack()} />
-
       <ScrollView>
         <Gap height={30} />
-
         <View style={styles.profileSection}>
-          <TouchableOpacity onPress={isEditing ? handleChoosePhoto : null}>
+          <TouchableOpacity onPress={handleChoosePhoto}>
             <Image
               source={profileImage ? {uri: profileImage} : Profil}
               style={styles.profileImage}
@@ -62,11 +62,14 @@ export default function ProfilePage({navigation}) {
               style={styles.inputName}
               value={name}
               onChangeText={setName}
-              placeholder="Your Name"
+              placeholder="Masukan nama"
               placeholderTextColor="#aaa"
             />
           ) : (
-            <Text style={styles.profileName}>{name}</Text>
+            <Text
+              style={[styles.profileName, {color: name ? 'black' : '#aaa'}]}>
+              {name ? name : 'Your Name'}
+            </Text>
           )}
         </View>
 
@@ -82,12 +85,14 @@ export default function ProfilePage({navigation}) {
                   style={styles.inputField}
                   value={email}
                   onChangeText={setEmail}
-                  placeholder="Your Email"
+                  placeholder="Masukan email"
                   placeholderTextColor="#aaa"
                   keyboardType="email-address"
                 />
               ) : (
-                <Text style={styles.value}>{email}</Text>
+                <Text style={[styles.value, {color: email ? 'black' : '#aaa'}]}>
+                  {email ? email : 'Your Email'}
+                </Text>
               )}
             </View>
           </View>
@@ -103,12 +108,14 @@ export default function ProfilePage({navigation}) {
                   style={styles.inputField}
                   value={phone}
                   onChangeText={setPhone}
-                  placeholder="Your Phone"
+                  placeholder="Masukan no phone"
                   placeholderTextColor="#aaa"
                   keyboardType="phone-pad"
                 />
               ) : (
-                <Text style={styles.value}>{phone}</Text>
+                <Text style={[styles.value, {color: phone ? 'black' : '#aaa'}]}>
+                  {phone ? phone : 'Your Phone'}
+                </Text>
               )}
             </View>
           </View>
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#aaa',
   },
   inputName: {
     fontSize: 20,
@@ -185,7 +192,7 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#aaa',
   },
   inputField: {
     borderBottomWidth: 1,
