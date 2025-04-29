@@ -7,6 +7,7 @@ import WelcomePage from './src/pages/Tampilan/index';
 import SignUpPage from './src/pages/SignUp/index';
 import LoginPage from './src/pages/SignIn/index';
 import Settings from './src/pages/Settings';
+import Dashboard from './src/pages/Dshbrd/index';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -29,6 +30,11 @@ const App = () => {
         <Stack.Screen
           name="LoginPage"
           component={LoginPage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
           options={{headerShown: false}}
         />
         <Stack.Screen

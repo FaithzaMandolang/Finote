@@ -47,7 +47,7 @@ export default function ProfilePage({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header title="Profil" withBackIcon onPress={() => navigation.goBack()} />
+      <Header title="Profil" withBackIcon={false} />
       <ScrollView>
         <Gap height={30} />
         <View style={styles.profileSection}>
