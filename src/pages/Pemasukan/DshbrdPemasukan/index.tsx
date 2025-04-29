@@ -4,6 +4,7 @@ import Header from '../../../components/molecules/Header';
 import LastTransaksi from '../LastTransaksi';
 import Button from '../../../components/atoms/Button';
 import Card from '../../../components/atoms/Card';
+import Gap from '../../../components/atoms/Gap';
 
 const DshbrdPemasukan = ({navigation, route}) => {
   const {jumlah, periode} = route.params || {};
@@ -41,6 +42,7 @@ const DshbrdPemasukan = ({navigation, route}) => {
       </Card>
 
       <LastTransaksi transactions={transactions} />
+      <Gap height={20} />
 
       <Button label="Tambah Pemasukan" onPress={onSubmit} />
     </View>
