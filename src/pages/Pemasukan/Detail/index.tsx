@@ -6,28 +6,45 @@ import Card from '../../../components/atoms/Card';
 import Row from './Row';
 
 const Detail = ({navigation, route}) => {
-  const {jumlah, tanggal, periode, sumber, keterangan, existingTransactions} =
-    route.params;
+  // Gunakan fallback agar tidak error jika route.params undefined
+  const params = route?.params ?? {};
+  const {
+    jumlah = '0',
+    tanggal = 'N/A',
+    periode = 'N/A',
+    sumber = 'N/A',
+    keterangan = 'Tidak ada',
+    existingTransactions = [],
+  } = params;
+
+  // Opsional: bisa tambahkan pengecekan jika semua default
+  const noData = !route?.params;
+
   return (
     <View style={styles.container}>
       <Header title="Detail Pemasukan" />
       <Gap height={60} />
 
-      <Card style={styles.card}>
-        <Text style={styles.mount}>Rp {jumlah}</Text>
-        <Text style={styles.total}>Total Pemasukan</Text>
-        <View style={styles.line} />
+      {noData ? (
+        <Text style={{textAlign: 'center', marginTop: 20}}>
+          Tidak ada data pemasukan untuk ditampilkan.
+        </Text>
+      ) : (
+        <Card style={styles.card}>
+          <Text style={styles.mount}>Rp {jumlah}</Text>
+          <Text style={styles.total}>Total Pemasukan</Text>
+          <View style={styles.line} />
 
-        <Gap height={44} />
-
-        <Row label="Tanggal" value={tanggal} />
-        <Gap height={27} />
-        <Row label="Periode" value={periode} />
-        <Gap height={27} />
-        <Row label="Sumber" value={sumber} />
-        <Gap height={27} />
-        <Row label="Keterangan" value={keterangan} />
-      </Card>
+          <Gap height={44} />
+          <Row label="Tanggal" value={tanggal} />
+          <Gap height={27} />
+          <Row label="Periode" value={periode} />
+          <Gap height={27} />
+          <Row label="Sumber" value={sumber} />
+          <Gap height={27} />
+          <Row label="Keterangan" value={keterangan} />
+        </Card>
+      )}
 
       <Gap height={54} />
       <TouchableOpacity

@@ -29,7 +29,7 @@ export default function LoginPage({navigation}) {
 
       <Button
         label="Login"
-        onPress={() => navigation.navigate('ProfilePage')}
+        onPress={() => navigation.navigate('BottomTabs')}
         height={55}
       />
     </View>

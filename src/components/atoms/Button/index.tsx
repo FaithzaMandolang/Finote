@@ -30,10 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 29,
     borderRadius: 100,
     marginVertical: 10,
-<<<<<<< HEAD
-=======
     width: '60%',
->>>>>>> 7b7d1984f54a738c1bcccd02fb3956ea080f3f02
     alignSelf: 'center',
     elevation: 2,
   },

@@ -4,8 +4,8 @@ import KategoriKebutuhan from '../../../pages/KategoriKebutuhan';
 import CustomTabBar from './CustomTabBar';
 import DshbrdPemasukan from '../../../pages/Pemasukan/DshbrdPemasukan';
 import RiwayatPengeluaran from '../../../pages/RiwayatPengeluaran';
-import WelcomePage from '../../../pages/Tampilan';
 import Detail from '../../../pages/Pemasukan/Detail';
+import ProfilePage from '../../../pages/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const BottomTabs = () => {
       <Tab.Screen name="Wallet" component={KategoriKebutuhan} />
       <Tab.Screen name="Add" component={DshbrdPemasukan} />
       <Tab.Screen name="History" component={RiwayatPengeluaran} />
-      <Tab.Screen name="Profile" component={WelcomePage} />
+      <Tab.Screen name="Profile" component={ProfilePage} />
     </Tab.Navigator>
   );
 };
