@@ -1,3 +1,4 @@
 import Finote from './Finote.png';
+import Plus from './Plus.png';
 
-export {Finote};
+export {Finote, Plus};

@@ -20,7 +20,7 @@ export default Header;
 const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#061C3D',
-    paddingVertical: 30,
+    paddingVertical: 20,
     paddingHorizontal: 17,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'Poppins-SemiBold',
     fontSize: 20,
+    paddingTop: 15,
   },
   backButton: {
     paddingRight: 8,
