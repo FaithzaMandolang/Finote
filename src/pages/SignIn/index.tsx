@@ -19,11 +19,12 @@ export default function LoginPage({navigation}) {
         <Image source={Google} style={styles.googleIcon} />
       </TouchableOpacity>
       <Gap height={20} />
+      <View style={styles.inputWrapper}>
+        <TextInput placeholder="Your Email" keyboardType="email-address" />
+        <Gap height={20} />
 
-      <TextInput placeholder="Your Email" keyboardType="email-address" />
-      <Gap height={20} />
-
-      <TextInput placeholder="Password" secureTextEntry />
+        <TextInput placeholder="Password" secureTextEntry />
+      </View>
       <Gap height={30} />
 
       <Button
@@ -58,5 +59,8 @@ const styles = StyleSheet.create({
   googleIcon: {
     width: 30,
     height: 30,
+  },
+  inputWrapper: {
+    width: '100%',
   },
 });

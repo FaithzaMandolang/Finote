@@ -13,16 +13,18 @@ export default function SignUpPage({navigation}) {
       <Text style={styles.title}>SignUp</Text>
       <Gap height={30} />
 
-      <TextInput placeholder="Your Name" />
-      <Gap height={20} />
+      <View style={styles.inputWrapper}>
+        <TextInput placeholder="Your Name" />
+        <Gap height={20} />
 
-      <TextInput placeholder="Your Email" keyboardType="email-address" />
-      <Gap height={20} />
+        <TextInput placeholder="Your Email" keyboardType="email-address" />
+        <Gap height={20} />
 
-      <TextInput placeholder="Password" secureTextEntry />
-      <Gap height={20} />
+        <TextInput placeholder="Password" secureTextEntry />
+        <Gap height={20} />
 
-      <TextInput placeholder="Re-Password" secureTextEntry />
+        <TextInput placeholder="Re-Password" secureTextEntry />
+      </View>
       <Gap height={30} />
 
       <Button
@@ -53,5 +55,8 @@ const styles = StyleSheet.create({
     color: '#00AEEF',
     textAlign: 'center',
     marginTop: -90,
+  },
+  inputWrapper: {
+    width: '100%',
   },
 });

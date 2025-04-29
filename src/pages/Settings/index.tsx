@@ -51,7 +51,10 @@ const Settings = () => {
         <Text style={styles.label}>Batas sisa dana per kategori</Text>
         <Gap height={16} />
         <View style={styles.input}>
-          <TextInput placeholder="Masukkan Sisa Dana" />
+          <TextInput
+            placeholder="Masukkan Sisa Dana"
+            customStyle={{marginHorizontal: 0}}
+          />
         </View>
         <Gap height={22} />
         <Text style={styles.label}>Pengingat pencatatan keuangan</Text>
@@ -86,7 +89,9 @@ const Settings = () => {
 
         <Gap height={45} />
         <Text style={styles.notif}>Panduan Pengguna</Text>
+        <Gap height={15} />
         <Text style={styles.notif}>Hapus Akun</Text>
+        <Gap height={15} />
         <Text style={styles.logout}>Log Out</Text>
       </View>
     </View>
@@ -135,6 +140,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginRight: 152,
   },
   dropdownList: {
     borderWidth: 1,
@@ -142,6 +148,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     overflow: 'hidden',
     backgroundColor: '#fff',
+    marginRight: 152,
   },
   dropdownItem: {
     paddingVertical: 12,
