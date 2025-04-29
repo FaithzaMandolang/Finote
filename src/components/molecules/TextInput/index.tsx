@@ -7,13 +7,14 @@ const TextInput = ({
   value,
   onChangeText,
   keyboardType = 'default',
+  customStyle,
 }) => {
   return (
     <View>
-      <Text style={styles.label}>{label}</Text>
+      {label && <Text style={styles.label}>{label}</Text>}
       <Input
         placeholder={placeholder}
-        style={styles.input}
+        style={[styles.input, customStyle]}
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
@@ -29,13 +30,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 17,
     color: '#000',
-    marginHorizontal: 24,
+    marginHorizontal: 17,
   },
   input: {
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
     borderRadius: 8,
-    marginHorizontal: 24,
+    marginHorizontal: 17,
   },
 });

@@ -1,29 +1,45 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../../components/molecules/Header';
 import LastTransaksi from '../LastTransaksi';
 import Button from '../../../components/atoms/Button';
 import Card from '../../../components/atoms/Card';
+import Gap from '../../../components/atoms/Gap';
 
 const DshbrdPemasukan = ({navigation, route}) => {
   const {jumlah, periode} = route.params || {};
+
+  const [transactions, setTransactions] = useState([]);
+
+  const {newTransaction, existingTransactions} = route.params || {};
+
+  useEffect(() => {
+    if (newTransaction) {
+      setTransactions([newTransaction, ...(existingTransactions || [])]);
+    }
+  }, [newTransaction]);
+
   const onSubmit = () => {
-    navigation.navigate('AddPemasukan');
+    navigation.navigate('AddPemasukan', {transactions});
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Header title={'Catatan Pemasukan'} />
 
       <Card style={styles.card}>
         <Text style={styles.Title}>
-          Pemasukan {periode ? periode : 'Periode'}
+          Pemasukan{' '}
+          {transactions.length > 0 ? transactions[0].periode : 'Periode'}
         </Text>
         <Text style={styles.mount}>
-          {jumlah ? `Rp ${Number(jumlah).toLocaleString('id-ID')}` : 'Rp 0'}
+          {transactions.length > 0
+            ? `Rp ${Number(transactions[0].jumlah).toLocaleString('id-ID')}`
+            : 'Rp 0'}
         </Text>
       </Card>
 
-      <LastTransaksi />
+      <LastTransaksi transactions={transactions} navigation={navigation} />
+      <Gap height={20} />
 
       <Button label="Tambah Pemasukan" onPress={onSubmit} />
     </View>
@@ -33,6 +49,10 @@ const DshbrdPemasukan = ({navigation, route}) => {
 export default DshbrdPemasukan;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
+  },
   card: {
     width: 380,
     height: 191,

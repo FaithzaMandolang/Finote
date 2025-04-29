@@ -6,7 +6,8 @@ import Card from '../../../components/atoms/Card';
 import Row from './Row';
 
 const Detail = ({navigation, route}) => {
-  const {jumlah, tanggal, periode, sumber, keterangan} = route.params;
+  const {jumlah, tanggal, periode, sumber, keterangan, existingTransactions} =
+    route.params;
   return (
     <View style={styles.container}>
       <Header title="Detail Pemasukan" />
@@ -30,14 +31,18 @@ const Detail = ({navigation, route}) => {
 
       <Gap height={54} />
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
+          const newTransaction = {
+            jumlah,
+            periode,
+            sumber,
+            tanggal,
+          };
           navigation.navigate('DshbrdPemasukan', {
-            jumlah: jumlah,
-            periode: periode,
-            sumber: sumber,
-            tanggal: tanggal,
-          })
-        }
+            newTransaction,
+            existingTransactions,
+          });
+        }}
         activeOpacity={0.5}>
         <Text style={styles.back}>Kembali ke Dashboard</Text>
       </TouchableOpacity>

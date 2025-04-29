@@ -1,4 +1,7 @@
 import Finote from './Finote.png';
-import Plus from './Plus.png';
+import Google from './Google.png';
+import Email from './Email.png';
+import Phone from './Phone.png';
+import Profil from './Profil.png';
 
-export {Finote, Plus};
+export {Finote, Google, Email, Phone, Profil};
