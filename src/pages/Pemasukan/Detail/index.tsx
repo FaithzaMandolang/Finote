@@ -54,7 +54,8 @@ const Detail = ({navigation, route}) => {
             tanggal,
             keterangan,
           };
-          navigation.navigate('DshbrdPemasukan', {
+          navigation.navigate('Pemasukan', {
+            screen: 'DshbrdPemasukan',
             newTransaction,
             existingTransactions,
           });

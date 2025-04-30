@@ -20,7 +20,10 @@ const DshbrdPemasukan = ({navigation, route}) => {
   }, [newTransaction]);
 
   const onSubmit = () => {
-    navigation.navigate('AddPemasukan', {transactions});
+    navigation.navigate('Pemasukan', {
+      screen: 'AddPemasukan',
+      params: {transactions},
+    });
   };
   return (
     <View style={styles.container}>
