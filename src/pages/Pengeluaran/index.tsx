@@ -5,7 +5,7 @@ import TextInput from '../../components/molecules/TextInput';
 import Gap from '../../components/atoms/Gap';
 import Button from '../../components/atoms/Button';
 
-const Pengeluaran = ({}) => {
+const Pengeluaran = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header title="Masukan Pengeluaran" />
@@ -16,7 +16,10 @@ const Pengeluaran = ({}) => {
       <Gap height={20} />
       <TextInput label="Kapan pengeluaran dilakukan?" placeholder="" />
       <Gap height={15} />
-      <Button label="Catat" />
+      <Button
+        label="Catat"
+        onPress={() => navigation.navigate('KategoriKebutuhan')}
+      />
     </View>
   );
 };

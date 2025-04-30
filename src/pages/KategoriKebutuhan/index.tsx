@@ -5,7 +5,7 @@ import CardKebutuhan from '../../components/molecules/CardKebutuhan';
 import Gap from '../../components/atoms/Gap';
 import TextLink from '../../components/atoms/TextLink';
 
-const KategoriKebutuhan = ({}) => {
+const KategoriKebutuhan = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header title="Atur keuanganmu!" />
@@ -15,21 +15,24 @@ const KategoriKebutuhan = ({}) => {
           title="Kebutuhan Makanan"
           description="Beli makanan jadi, beli bahan makanan mentah"
           amount="100.000"
-          onPress={() => console.log('Klik Makanan')}
+          onPress={() => navigation.navigate('Pengeluaran')}
         />
         <CardKebutuhan
           title="Kebutuhan Ongkos Perjalanan"
           description="Indrive, ojek, bus"
           amount="100.000"
-          onPress={() => console.log('Klik Perjalanan')}
+          onPress={() => navigation.navigate('Pengeluaran')}
         />
         <CardKebutuhan
           title="Kebutuhan Rumah"
           description="Listrik, air, dll"
           amount="100.000"
-          onPress={() => console.log('Klik Rumah')}
+          onPress={() => navigation.navigate('Pengeluaran')}
         />
-        <TextLink label="Tambah" onPress={() => console.log('Edit diklik')} />
+        <TextLink
+          label="Tambah"
+          onPress={() => navigation.navigate('BuatKebutuhan')}
+        />
       </View>
     </View>
   );
