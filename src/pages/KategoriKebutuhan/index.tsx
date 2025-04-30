@@ -29,7 +29,10 @@ const KategoriKebutuhan = ({navigation}) => {
           amount="100.000"
           onPress={() => navigation.navigate('Pengeluaran')}
         />
-        <TextLink label="Tambah" onPress={() => console.log('Edit diklik')} />
+        <TextLink
+          label="Tambah"
+          onPress={() => navigation.navigate('BuatKebutuhan')}
+        />
       </View>
     </View>
   );

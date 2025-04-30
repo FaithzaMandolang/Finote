@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Button from '../../atoms/Button';
 
-const CardKebutuhan = ({title, description, amount, onPress, navigation}) => {
+const CardKebutuhan = ({title, description, amount, onPress}) => {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>

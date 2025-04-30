@@ -4,7 +4,6 @@ import KategoriKebutuhan from '../../../pages/KategoriKebutuhan';
 import CustomTabBar from './CustomTabBar';
 import DshbrdPemasukan from '../../../pages/Pemasukan/DshbrdPemasukan';
 import RiwayatPengeluaran from '../../../pages/RiwayatPengeluaran';
-import Detail from '../../../pages/Pemasukan/Detail';
 import ProfilePage from '../../../pages/Profile';
 import Dashboard from '../../../pages/Dshbrd';
 

@@ -10,4 +10,4 @@ import KategoriKebutuhan from './src/pages/KategoriKebutuhan';
 import BuatKebutuhan from './src/pages/BuatKategori';
 import Pengeluaran from './src/pages/Pengeluaran';
 
-AppRegistry.registerComponent(appName, () => BuatKebutuhan);
+AppRegistry.registerComponent(appName, () => App);
