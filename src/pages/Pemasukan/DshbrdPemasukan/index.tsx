@@ -38,7 +38,7 @@ const DshbrdPemasukan = ({navigation, route}) => {
         </Text>
       </Card>
 
-      <LastTransaksi transactions={transactions} navigation={navigation} />
+      <LastTransaksi transactions={transactions} />
       <Gap height={20} />
 
       <Button label="Tambah Pemasukan" onPress={onSubmit} />

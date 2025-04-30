@@ -54,6 +54,7 @@ const Detail = ({navigation, route}) => {
             periode,
             sumber,
             tanggal,
+            keterangan,
           };
           navigation.navigate('DshbrdPemasukan', {
             newTransaction,
