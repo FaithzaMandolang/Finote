@@ -1,37 +1,26 @@
 import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Gap from '../../../components/atoms/Gap';
 
-const LastTransaksi = ({transactions, navigation}) => {
-  const handlePress = item => {
-    navigation.navigate('Detail', {data: item});
-  };
+const LastTransaksi = ({transactions}) => {
   return (
     <View>
       <Text style={styles.transaction}>Transaksi Terakhir</Text>
 
-      <View style={styles.List}>
+      <View style={styles.scroll}>
         <FlatList
           data={transactions}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('transaksiDetail', {
-                  ...item,
-                  existingTransactions: transactions,
-                })
-              }>
-              <View style={styles.item}>
-                <View>
-                  <Text style={styles.title}>{item.sumber}</Text>
-                  <Text style={styles.date}>{item.tanggal}</Text>
-                </View>
-                <Text style={styles.amount}>
-                  Rp {item.jumlah.toLocaleString('id:ID')}
-                </Text>
+            <View style={styles.item}>
+              <View>
+                <Text style={styles.title}>{item.sumber}</Text>
+                <Text style={styles.date}>{item.tanggal}</Text>
               </View>
-            </TouchableOpacity>
+              <Text style={styles.amount}>
+                Rp {item.jumlah.toLocaleString('id-ID')}
+              </Text>
+            </View>
           )}
           scrollEnabled={true}
           showsVerticalScrollIndicator={false}
@@ -46,7 +35,7 @@ const LastTransaksi = ({transactions, navigation}) => {
 export default LastTransaksi;
 
 const styles = StyleSheet.create({
-  List: {
+  scroll: {
     maxHeight: 200,
     marginBottom: 10,
   },
@@ -62,7 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#061C3D',
     borderRadius: 12,
-    padding: 7,
+    padding: 10,
     marginHorizontal: 20,
     backgroundColor: '#fff',
     flexDirection: 'row',
