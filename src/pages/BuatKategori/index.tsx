@@ -5,7 +5,7 @@ import TextInput from '../../components/molecules/TextInput';
 import Gap from '../../components/atoms/Gap';
 import Button from '../../components/atoms/Button';
 
-const BuatKebutuhan = ({onPress}) => {
+const BuatKebutuhan = ({onPress, navigation}) => {
   return (
     <View style={styles.container}>
       <Header title="Buat Kategori Kebutuhan" />
@@ -18,7 +18,10 @@ const BuatKebutuhan = ({onPress}) => {
       <Gap height={20} />
       <TextInput label="Batas Minimum Sisa" placeholder="Rp" />
       <Gap height={15} />
-      <Button label="Buat" onPress={onPress} />
+      <Button
+        label="Buat"
+        onPress={() => navigation.navigate('KategoriKebutuhan')}
+      />
     </View>
   );
 };

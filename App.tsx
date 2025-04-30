@@ -14,6 +14,7 @@ import transaksiDetail from './src/pages/Pemasukan/TransaksiDetail';
 import BuatKebutuhan from './src/pages/BuatKategori';
 import Pengeluaran from './src/pages/Pengeluaran';
 import BottomTabs from './src/components/molecules/BottomTabs';
+import DshbrdPemasukan from './src/pages/Pemasukan/DshbrdPemasukan';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="WelcomePage"
           component={WelcomePage}
@@ -34,11 +40,6 @@ const App = () => {
         <Stack.Screen
           name="SignUpPage"
           component={SignUpPage}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -64,6 +65,11 @@ const App = () => {
         <Stack.Screen
           name="BuatKebutuhan"
           component={BuatKebutuhan}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DshbrdPemasukan"
+          component={DshbrdPemasukan}
           options={{headerShown: false}}
         />
         <Stack.Screen
