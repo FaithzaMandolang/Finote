@@ -6,7 +6,6 @@ import Card from '../../../components/atoms/Card';
 import Row from './Row';
 
 const Detail = ({navigation, route}) => {
-  // Gunakan fallback agar tidak error jika route.params undefined
   const params = route?.params ?? {};
   const {
     jumlah = '0',
@@ -17,7 +16,6 @@ const Detail = ({navigation, route}) => {
     existingTransactions = [],
   } = params;
 
-  // Opsional: bisa tambahkan pengecekan jika semua default
   const noData = !route?.params;
 
   return (

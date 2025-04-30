@@ -4,7 +4,13 @@ import {Finote} from '../../assets';
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
-    setTimeout(() => navigation.replace('DshbrdPemasukan'), 3000);
+    setTimeout(
+      () =>
+        navigation.replace('Pemasukan', {
+          screen: 'DshbrdPemasukan',
+        }),
+      3000,
+    );
   }, []);
   return (
     <View style={styles.container}>

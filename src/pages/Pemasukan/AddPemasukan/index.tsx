@@ -5,7 +5,6 @@ import {
   View,
   Text,
   TextInput as RNTextInput,
-  ScrollView,
   Platform,
   Keyboard,
 } from 'react-native';
