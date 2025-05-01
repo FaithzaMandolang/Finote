@@ -77,7 +77,6 @@ export default function DashboardPage({navigation, route}) {
           <Text style={styles.notificationTime}>1 Hari lalu</Text>
         </View>
 
-        {/* Tombol Lihat Lainnya */}
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => navigation.navigate('NotificationsPage')}>
