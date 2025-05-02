@@ -14,7 +14,6 @@ export default function LoginPage({navigation}) {
       <Text style={styles.title}>Login</Text>
       <Gap height={70} />
 
-      {/* Gambar Google sebagai tombol */}
       <TouchableOpacity onPress={() => console.log('Google Button Pressed')}>
         <Image source={Google} style={styles.googleIcon} />
       </TouchableOpacity>

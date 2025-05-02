@@ -29,7 +29,7 @@ export default function SignUpPage({navigation}) {
 
       <Button
         label="SignUp"
-        onPress={() => navigation.navigate('DshbrdPemasukan')}
+        onPress={() => navigation.navigate('LoginPage')}
         height={55}
       />
     </View>
