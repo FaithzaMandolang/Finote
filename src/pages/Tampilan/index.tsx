@@ -4,7 +4,7 @@ import Gap from '../../components/atoms/Gap';
 import Button from '../../components/atoms/Button';
 import React from 'react';
 
-export default function WelcomePage({navigation}) {
+const WelcomePage = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image source={Finote} style={styles.logo} resizeMode="contain" />
@@ -33,7 +33,8 @@ export default function WelcomePage({navigation}) {
       />
     </View>
   );
-}
+};
+export default WelcomePage;
 
 const styles = StyleSheet.create({
   container: {

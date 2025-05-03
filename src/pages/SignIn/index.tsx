@@ -6,7 +6,7 @@ import Button from '../../components/atoms/Button';
 import TextInput from '../../components/molecules/TextInput';
 import {Google} from '../../assets';
 
-export default function LoginPage({navigation}) {
+const LoginPage = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image source={Finote} style={styles.logo} resizeMode="contain" />
@@ -33,7 +33,8 @@ export default function LoginPage({navigation}) {
       />
     </View>
   );
-}
+};
+export default LoginPage;
 
 const styles = StyleSheet.create({
   container: {

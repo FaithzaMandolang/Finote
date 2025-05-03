@@ -16,6 +16,8 @@ import Pengeluaran from './src/pages/Pengeluaran';
 import KategoriKebutuhan from './src/pages/KategoriKebutuhan';
 import Pemasukan from './src/pages/Pemasukan';
 
+import './src/config/Firebase';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {

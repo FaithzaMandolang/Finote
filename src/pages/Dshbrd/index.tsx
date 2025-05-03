@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Gap from '../../components/atoms/Gap';
 import Card from '../../components/atoms/Card';
 
-export default function DashboardPage({navigation, route}) {
+const DashboardPage = ({navigation, route}) => {
   const [transactions, setTransactions] = useState([]);
   const {newTransaction, existingTransactions} = route?.params || {};
 
@@ -113,7 +113,8 @@ export default function DashboardPage({navigation, route}) {
       </ScrollView>
     </View>
   );
-}
+};
+export default DashboardPage;
 
 const styles = StyleSheet.create({
   container: {
