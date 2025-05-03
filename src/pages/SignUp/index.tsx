@@ -17,14 +17,19 @@ const SignUpPage = ({navigation}) => {
   const [rePassword, setRePassword] = useState('');
 
   const onSubmit = () => {
+    const auth = getAuth();
+    const db = getDatabase();
+    if (password !== rePassword) {
+      showMessage({
+        message: 'Password dan konfirmasi password tidak sama',
+        type: 'danger',
+      });
+      return;
+    }
     const data = {
       fullName: fullName,
       email: email,
-      password: password,
-      rePassword: rePassword,
     };
-    const auth = getAuth();
-    const db = getDatabase();
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Sign Up
