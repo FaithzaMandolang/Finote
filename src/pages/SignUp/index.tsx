@@ -4,90 +4,87 @@ import {Finote} from '../../assets';
 import Gap from '../../components/atoms/Gap';
 import Button from '../../components/atoms/Button';
 import TextInput from '../../components/molecules/TextInput';
-import {showMessage} from 'react-native-flash-message';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
-import {getDatabase, ref, set} from 'firebase/database';
 
-import '../../config/Firebase';
+import {showMessage} from 'react-native-flash-message';
+import {getDatabase, ref, set, get} from 'firebase/database';
 
 const SignUpPage = ({navigation}) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
 
-  const onSubmit = () => {
-    const data = {
-      fullName: fullName,
-      email: email,
-      password: password,
-      rePassword: rePassword,
-    };
+  const onSubmit = async () => {
     const auth = getAuth();
-    const db = getDatabase();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        // Sign Up
-        const user = userCredential.user;
-        set(ref(db, 'users/' + user.uid), data);
-        showMessage({
-          message: 'Registration success',
-          type: 'success',
-        });
-        navigation.navigate('LoginPage');
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        showMessage({
-          message: errorMessage,
-          type: 'danger',
-        });
+    const database = getDatabase();
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      const user = userCredential.user;
+
+      await set(ref(database, 'users/' + user.uid), {
+        fullName: fullName,
+        email: email,
+        password: password,
       });
+      showMessage({
+        message: 'Sign Up Success',
+        type: 'success',
+      });
+
+      navigation.navigate('LoginPage');
+    } catch (error) {
+      showMessage({
+        message: error.message,
+        type: 'danger',
+      });
+    }
   };
+
   return (
-    <View style={styles.container}>
-      <Image source={Finote} style={styles.logo} resizeMode="contain" />
-      <Gap height={20} />
-      <Text style={styles.title}>SignUp</Text>
-      <Gap height={30} />
-
-      <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="Your Name"
-          value={fullName}
-          onChangeText={setFullName}
-        />
+    <>
+      <View style={styles.container}>
+        <Image source={Finote} style={styles.logo} resizeMode="contain" />
         <Gap height={20} />
+        <Text style={styles.title}>SignUp</Text>
+        <Gap height={30} />
 
-        <TextInput
-          placeholder="Your Email"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <Gap height={20} />
+        <View style={styles.inputWrapper}>
+          <TextInput
+            placeholder="Your Name"
+            value={fullName}
+            onChangeText={setFullName}
+          />
+          <Gap height={20} />
 
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        <Gap height={20} />
+          <TextInput
+            placeholder="Your Email"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Gap height={20} />
 
-        <TextInput
-          placeholder="Re-Password"
-          value={rePassword}
-          onChangeText={setRePassword}
-          secureTextEntry
-        />
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <Gap height={20} />
+        </View>
+        <Gap height={30} />
+
+        <Button label="SignUp" onPress={onSubmit} />
       </View>
-      <Gap height={30} />
-
-      <Button label="SignUp" onPress={onSubmit} />
-    </View>
+    </>
   );
 };
+
 export default SignUpPage;
 
 const styles = StyleSheet.create({
