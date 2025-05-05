@@ -35,6 +35,11 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="SignUpPage"
+            component={SignUpPage}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="LoginPage"
             component={LoginPage}
             options={{headerShown: false}}
@@ -47,11 +52,6 @@ const App = () => {
           <Stack.Screen
             name="Pemasukan"
             component={Pemasukan}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="SignUpPage"
-            component={SignUpPage}
             options={{headerShown: false}}
           />
           <Stack.Screen

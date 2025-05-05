@@ -4,45 +4,40 @@ import {Finote} from '../../assets';
 import Gap from '../../components/atoms/Gap';
 import Button from '../../components/atoms/Button';
 import TextInput from '../../components/molecules/TextInput';
+
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {getDatabase, ref, set} from 'firebase/database';
 
 import {showMessage} from 'react-native-flash-message';
-import {getDatabase, ref, set, get} from 'firebase/database';
 
 const SignUpPage = ({navigation}) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     const auth = getAuth();
-    const database = getDatabase();
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      const user = userCredential.user;
-
-      await set(ref(database, 'users/' + user.uid), {
-        fullName: fullName,
-        email: email,
-        password: password,
+    const db = getDatabase();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        // Signed up
+        const user = userCredential.user;
+        set(ref(db, 'users/' + user.uid), {
+          fullName: fullName,
+          email: email,
+        });
+        showMessage({
+          message: 'Registration success',
+          type: 'success',
+        });
+        navigation.navigate('LoginPage');
+      })
+      .catch(error => {
+        showMessage({
+          message: error.message,
+          type: 'danger',
+        });
       });
-      showMessage({
-        message: 'Sign Up Success',
-        type: 'success',
-      });
-
-      navigation.navigate('LoginPage');
-    } catch (error) {
-      showMessage({
-        message: error.message,
-        type: 'danger',
-      });
-    }
   };
 
   return (

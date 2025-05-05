@@ -14,8 +14,8 @@ import Gap from '../../../components/atoms/Gap';
 import Button from '../../../components/atoms/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { getDatabase, ref, set } from "firebase/database";
-import { showMessage } from 'react-native-flash-message';
+import {getDatabase, ref, set} from 'firebase/database';
+import {showMessage} from 'react-native-flash-message';
 
 const formatDate = date => {
   const d = new Date(date);
@@ -86,13 +86,13 @@ const AddPemasukan = ({navigation, route}) => {
       sumber: sumber,
       keterangan: keterangan,
       existingTransactions,
-    }
+    };
     const db = getDatabase();
     set(ref(db, 'users/' + userId), data);
     showMessage({
-      message: "Pemasukan berhasil ditambahkan",
-      type: "success",
-    })
+      message: 'Pemasukan berhasil ditambahkan',
+      type: 'success',
+    });
     navigation.navigate('Detail');
   };
 
